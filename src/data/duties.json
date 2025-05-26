@@ -1,0 +1,125 @@
+{
+  "en": {
+     "title": "Fundamental Duties of Indian Citizens",
+    "language": "Language",
+    "articles": {
+    "1": {
+      "title": "Abide by the Constitution and Respect National Ideals",
+      "explanation": "Every citizen must respect the Indian Constitution, its ideals (justice, liberty, equality, fraternity), and national symbols like the flag and anthem. Example: Standing respectfully during the national anthem.",
+      "legal_basis": "Added by the 42nd Amendment (1976), inspired by the Soviet Constitution."
+    },
+    "2": {
+      "title": "Cherish the Noble Ideals of the Freedom Struggle",
+      "explanation": "Citizens should honor the sacrifices made during India's independence movement. Example: Educating children about freedom fighters like Gandhi and Bhagat Singh.",
+      "significance": "Promotes patriotism and historical awareness."
+    },
+    "3": {
+      "title": "Uphold India's Sovereignty, Unity, and Integrity",
+      "explanation": "Citizens must protect India's unity and oppose secessionist activities. Example: Rejecting divisive ideologies based on religion or region.",
+      "context": "Especially relevant in areas with separatist movements."
+    },
+    "4": {
+      "title": "Defend the Country and Render National Service",
+      "explanation": "When called upon, citizens should serve the nation (e.g., military service). Example: Joining the armed forces or disaster relief efforts.",
+      "note": "Not mandatory conscription but a moral obligation."
+    },
+    "5": {
+      "title": "Promote Harmony and Brotherhood",
+      "explanation": "Citizens must transcend religious, linguistic, and regional differences. Example: Celebrating festivals of all communities.",
+      "constitutional_value": "Supports the 'Fraternity' principle in the Preamble."
+    },
+    "6": {
+      "title": "Preserve Composite Culture",
+      "explanation": "India's diverse heritage (e.g., classical arts, folk traditions) must be safeguarded. Example: Learning traditional crafts or supporting cultural events.",
+      "example": "Protecting monuments like the Taj Mahal."
+    },
+    "7": {
+      "title": "Protect Natural Environment",
+      "explanation": "Duty to conserve forests, lakes, rivers, and wildlife. Example: Avoiding plastic use near water bodies.",
+      "legal_tie": "Linked to Article 48A (Directive Principle)."
+    },
+    "8": {
+      "title": "Develop Scientific Temper and Humanism",
+      "explanation": "Embrace rational thinking and reject superstitions. Example: Questioning pseudoscientific claims like astrology-based decisions.",
+      "historical_context": "Highlighted by leaders like Nehru and Ambedkar."
+    },
+    "9": {
+      "title": "Safeguard Public Property",
+      "explanation": "Avoid vandalism of government assets (e.g., buses, schools). Example: Reporting damage to public infrastructure.",
+      "current_relevance": "Addresses protests involving property destruction."
+    },
+    "10": {
+      "title": "Strive for Excellence",
+      "explanation": "Individuals should aim for high standards in all spheres. Example: Students pursuing education diligently.",
+      "philosophy": "Encourages national progress through individual effort."
+    },
+    "11": {
+      "title": "Duty of Parents/Guardians",
+      "explanation": "Provide education to children aged 6–14 years. Example: Enrolling kids in school, not child labor.",
+      "legal_backing": "Aligned with the Right to Education Act (2009)."
+    }
+  }},
+   
+  "hi": {
+    "title": "मौलिक कर्तव्य ",
+    "language": "भाषा",
+    "articles": {
+    "1": {
+      "title": "संविधान का पालन करें और राष्ट्रीय प्रतीकों का सम्मान करें",
+      "explanation": "प्रत्येक नागरिक का कर्तव्य है कि वह संविधान, राष्ट्रीय ध्वज और राष्ट्रगान का सम्मान करे। उदाहरण: राष्ट्रगान बजने पर खड़े होना।",
+      "legal_basis": "42वें संशोधन (1976) द्वारा जोड़ा गया"
+    },
+    "2": {
+      "title": "स्वतंत्रता संग्राम के आदर्शों को संजोएं",
+      "explanation": "नागरिकों को स्वतंत्रता सेनानियों के बलिदानों को याद रखना चाहिए। उदाहरण: बच्चों को गांधीजी और भगत सिंह के बारे में पढ़ाना।",
+      "significance": "देशभक्ति और ऐतिहासिक चेतना को बढ़ावा"
+    },
+    "3": {
+      "title": "देश की संप्रभुता, एकता और अखंडता की रक्षा करें",
+      "explanation": "धर्म या क्षेत्र के आधार पर देश को विभाजित करने वाली विचारधाराओं का विरोध करें। उदाहरण: आतंकवाद या अलगाववाद का विरोध।",
+      "context": "विशेष रूप से संवेदनशील क्षेत्रों के लिए प्रासंगिक"
+    },
+    "4": {
+      "title": "देश की रक्षा करें और राष्ट्रीय सेवा करें",
+      "explanation": "आवश्यकता पड़ने पर सेना या आपदा राहत में योगदान दें। उदाहरण: सीमा पर जवानों का साथ देना।",
+      "note": "कानूनी बाध्यता नहीं, पर नैतिक दायित्व"
+    },
+    "5": {
+      "title": "सामाजिक सद्भाव और भाईचारे को बढ़ावा दें",
+      "explanation": "धर्म, भाषा या क्षेत्र के आधार पर भेदभाव न करें। उदाहरण: सभी समुदायों के त्योहार मनाना।",
+      "constitutional_value": "प्रस्तावना में 'बंधुत्व' के सिद्धांत का समर्थन"
+    },
+    "6": {
+      "title": "समृद्ध सांस्कृतिक विरासत को सुरक्षित रखें",
+      "explanation": "क्लासिकल नृत्य, संगीत और पारंपरिक कलाओं को बचाएं। उदाहरण: स्थानीय हस्तशिल्प को सीखना।",
+      "example": "ताजमहल जैसे स्मारकों की सुरक्षा"
+    },
+    "7": {
+      "title": "प्राकृतिक पर्यावरण की रक्षा करें",
+      "explanation": "नदियों, जंगलों और वन्यजीवों को बचाने का प्रयास करें। उदाहरण: प्लास्टिक का उपयोग कम करना।",
+      "related_article": "अनुच्छेद 48क (नीति निर्देशक तत्व)"
+    },
+    "8": {
+      "title": "वैज्ञानिक दृष्टिकोण अपनाएं",
+      "explanation": "अंधविश्वासों को त्यागें और तर्कसंगत सोच विकसित करें। उदाहरण: ज्योतिष पर निर्भर निर्णयों को चुनौती देना।",
+      "historical_context": "नेहरू और अंबेडकर द्वारा प्रतिपादित"
+    },
+    "9": {
+      "title": "सार्वजनिक संपत्ति की सुरक्षा करें",
+      "explanation": "सरकारी संपत्ति जैसे बसों, स्कूलों को नुकसान न पहुंचाएं। उदाहरण: विरोध प्रदर्शनों में हिंसा से बचना।",
+      "current_relevance": "आंदोलनों में संपत्ति क्षति की घटनाओं को रोकना"
+    },
+    "10": {
+      "title": "उत्कृष्टता के लिए प्रयास करें",
+      "explanation": "व्यक्तिगत और राष्ट्रीय प्रगति के लिए उच्च मानक स्थापित करें। उदाहरण: छात्रों का नियमित अध्ययन।",
+      "philosophy": "राष्ट्र निर्माण में योगदान की भावना"
+    },
+    "11": {
+      "title": "माता-पिता/अभिभावकों का कर्तव्य",
+      "explanation": "6-14 वर्ष के बच्चों को शिक्षा उपलब्ध कराएं। उदाहरण: बच्चों को स्कूल भेजना, बाल श्रम न कराना।",
+      "legal_support": "शिक्षा का अधिकार अधिनियम (2009) से जुड़ाव"
+    }
+    
+  }
+}
+}

@@ -1,13 +1,15 @@
 // components/Navbar.js
+import Link from 'next/link';
 import './Navbar.css';
 
 export default function Navbar() {
   return (
     <nav className="navbar ">
-      <div className="navbarLeft">⚖️ CIVAI</div>
+      <Link href='/'><div className="navbarLeft cursor-pointer">⚖️ CIVAI</div></Link>
+      
       <div className="navbarCenter">
-        <a href="#fundamental-rights z-20">Rights</a>
-        <a href="#fundamental-duties z-20">Duties</a>
+        <a href="/rights">Rights</a>
+        <a href="/duties">Duties</a>
         <a href="#hot-news z-50">Recent Cases</a>
       </div>
       <div className="flex gap-6"> 
