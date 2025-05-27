@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+*{
+  overflow-x: hidden; /*by vivek*/
+}
 
 .backgroundContainer {
   position: relative;
