@@ -6,6 +6,7 @@ import "./Auth.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { storeContext } from "../AuthContext";
+import Navbar from "../../../components/Navbar/Navbar2";
 
 export default function Login() {
   const router = useRouter();
@@ -35,12 +36,25 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="auth bg-transparent bg-gradient-to-br from-black via-zinc-800 to-black text-white">
-      <div className="auth-container">
-        <div className="auth-left"></div>
-        <div className="auth-right">
-          <form onSubmit={handleSubmit}>
-            <h1>Login</h1>
+        <main className="relative h-screen w-screen  ">
+                  <section className="w-full flex justify-center">
+                    <Navbar />
+                  </section>
+        <div className="relative auth h-full overflow-clip bg-transparent bg-gradient-to-br from-black via-zinc-800 to-black text-white">
+          <div className="auth-container absolute h-full  overflow-clip">
+            <div className="h-full flex jsutify-center items-center w-full -z-10  ">
+              <img src="/authbg3.jpg" className=" h-full w-screen" />
+            </div>
+            <div className="text-white flex justify-center items-center h-screen overflow-clip">
+              <form
+                onSubmit={handleSubmit}
+                className=" flex flex-col justify-center itmes-center max-w-lg mx-auto mt-10 p-6 shadow-lg rounded-xl space-y-6 h-1/2 w-3/4
+                 bg-white/10 backdrop-blur-md border border-white/30 text-white"
+              >
+                <h1 className="text-2xl font-bold text-center text-white">
+                  Log In
+                </h1>
+    
 
             <input
               type="text"
@@ -77,5 +91,6 @@ export default function Login() {
 
       <ToastContainer position="top-right" autoClose={2000} />
     </div>
+    </main>
   );
 }

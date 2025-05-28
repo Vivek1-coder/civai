@@ -7,6 +7,7 @@ import "./Auth.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { storeContext } from "../AuthContext";
+import Navbar from "../../../components/Navbar/Navbar2";
 
 export default function SignIn() {
   const router = useRouter();
@@ -36,6 +37,10 @@ export default function SignIn() {
   }, []);
 
   return (
+    <main className="relative h-screen w-screen  ">
+              <section className="w-full flex justify-center">
+                <Navbar />
+              </section>
     <div className="relative auth h-full overflow-clip bg-transparent bg-gradient-to-br from-black via-zinc-800 to-black text-white">
       <div className="auth-container absolute h-full  overflow-clip">
         <div className="h-full flex jsutify-center items-center w-full -z-10  ">
@@ -102,5 +107,6 @@ export default function SignIn() {
 
       <ToastContainer position="top-right" autoClose={2000} />
     </div>
+    </main>
   );
 }
