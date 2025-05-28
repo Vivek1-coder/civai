@@ -1,15 +1,18 @@
 "use client"; // Only if you're using App Router
 
-
 import { ToastContainer } from "react-toastify";
-
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 import {
   Mic,
   Search,
   Sparkles,
   BrainCircuit,
   ImagePlus,
+  CircleStop,
   Plus,
+  MicOff,
   MoreVertical,
   Lightbulb,
   FileCheck,
@@ -23,9 +26,18 @@ import Navbar from "../components/Navbar/Navbar";
 
 export default function Home() {
   const [inputFocused, setInputFocused] = useState(false);
+  const [query, setQuery] = useState("");
   const router = useRouter();
   const { authorization, setAuthorization } = useContext(storeContext);
+  const [micAvailable, setMicAvailable] = useState(true);
   const pathname = usePathname();
+
+  const { transcript, listening, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
+
+  const handleChange = (e) => {
+    return setQuery(e.target.value);
+  };
 
   useEffect(() => {
     if (!localStorage.getItem("auth")) {
@@ -33,6 +45,22 @@ export default function Home() {
       setAuthorization(false);
     }
   }, [authorization, pathname]);
+
+  useEffect(() => {
+    //This is to check whether the mic is available on the device or not.
+    if (!browserSupportsSpeechRecognition) {
+      setMicAvailable(false);
+    } else {
+      setMicAvailable(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!listening && transcript) {
+      // speech end hone ke baad input field will update.
+      setQuery(transcript);
+    }
+  }, [listening, transcript]);
 
   return (
     <main className="relative h-screen w-screen  ">
@@ -55,8 +83,11 @@ export default function Home() {
                   inputFocused ? "ring-2 ring-gray-500 rounded-xl" : ""
                 }`}
                 placeholder="Ask anything"
+                value={query}
+                onChange={handleChange}
               />
             </div>
+
             <div className="flex flex-wrap gap-3 items-center justify-start md:justify-end px-10">
               <LabeledButton
                 icon={<Lightbulb size={16} />}
@@ -80,7 +111,24 @@ export default function Home() {
                 label="Compile pdf"
               />
               <IconButton icon={<MoreVertical size={16} />} />
-              <IconButton icon={<Mic size={16} />} />
+              {micAvailable && !listening && (
+                <IconButton
+                  icon={
+                    <Mic size={16} onClick={SpeechRecognition.startListening} />
+                  }
+                />
+              )}
+              {micAvailable && listening && (
+                <IconButton
+                  icon={
+                    <CircleStop
+                      size={16}
+                      onClick={SpeechRecognition.stopListening}
+                    />
+                  }
+                />
+              )}
+              {!micAvailable && <IconButton icon={<MicOff size={16} />} />}
             </div>
           </div>
         </div>
@@ -102,7 +150,7 @@ export default function Home() {
 
 function IconButton({ icon }) {
   return (
-    <button className="w-9 h-9 flex items-center justify-center rounded-full bg-[#2b2b2b] hover:bg-[#3b3b3b] transition-all duration-200 hover:scale-105 shadow-md cursor-pointer">
+    <button className="w-9 h-9 flex items-center justify-center rounded-full bg-[#2b2b2b] hover:bg-[#3b3b3b] transition-all duration-200  shadow-md cursor-pointer">
       {icon}
     </button>
   );
