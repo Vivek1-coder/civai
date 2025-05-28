@@ -36,7 +36,7 @@ export default function SignIn() {
   }, []);
 
   return (
-    <div className="relative auth h-full overflow-clip">
+    <div className="relative auth h-full overflow-clip bg-transparent bg-gradient-to-br from-black via-zinc-800 to-black text-white">
       <div className="auth-container absolute h-full  overflow-clip">
         <div className="h-full flex jsutify-center items-center w-full -z-10  ">
           <img src="/authbg3.jpg" className=" h-full w-screen" />
@@ -87,11 +87,11 @@ export default function SignIn() {
               {loading ? "Processing..." : "Sign Up"}
             </button>
 
-            <div className="text-center text-sm text-gray-600 h-20">
+            <div className="text-center text-sm text-gray-200 h-20">
               Already have an account?{" "}
               <span
                 onClick={() => router.push("/login")}
-                className="text-blue-600 cursor-pointer hover:underline"
+                className="text-blue-400 cursor-pointer hover:underline"
               >
                 Login
               </span>
