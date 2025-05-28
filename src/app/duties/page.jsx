@@ -2,7 +2,7 @@
 import { useState } from "react";
 import duties from "../../data/duties.json";
 import Link from "next/link";
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function Home() {
   const [lang, setLang] = useState("en");

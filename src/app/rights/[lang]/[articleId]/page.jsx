@@ -3,7 +3,7 @@ import { useParams } from "next/navigation";
 import rights from "../../../../data/rights.json";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "../../../../components/Navbar/Navbar";
 
 export default function ArticleDetail() {
   const params = useParams();
@@ -40,7 +40,7 @@ export default function ArticleDetail() {
 
         {/* Article Card */}
         <div className="w-full max-w-4xl bg-white/10 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-lg px-6 py-8 md:px-10 md:py-12 overflow-y-auto max-h-[75vh] mt-8">
-          <h1 className="text-3xl font-bold text-center mb-6 text-white">
+          <h1 className="text-3xl font-bold text-center mb-6 overflow-y-hidden text-white">
             Article {articleId}: {article.title}
           </h1>
           <p className="text-lg leading-relaxed text-center text-gray-200 whitespace-pre-line">

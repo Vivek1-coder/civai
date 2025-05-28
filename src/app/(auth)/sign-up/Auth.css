@@ -1,0 +1,125 @@
+.auth{
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.auth .auth-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth .auth-container>div{
+    height: 100%;
+    width: 50%;
+}
+
+.auth .auth-left{
+    background-image: url("/authbg3.jpg");
+    height: 80vh;
+    overflow:hidden;
+    background-position: 0 0;
+}
+
+.auth .auth-right{
+    display: grid;
+    place-items: center;
+}
+
+.auth .auth-right form{
+    height: 60%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth .auth-right form h1{
+    color: white;
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+.auth .auth-right form input{
+    height: 60px;
+    padding: 10px;
+    color:  white;
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+.auth .auth-right form input:focus{
+outline: none;
+}
+
+
+.auth .auth-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.auth .auth-row label{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+}
+
+.auth .auth-row p{
+    color:white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.auth .grey:hover{
+    text-decoration: underline;
+    color:grey;
+}
+
+.auth button{
+    background-color: white;
+    height: 40px;
+    color: black;
+    font-size: 1.01rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.auth button:hover{
+    background-color: rgb(196, 196, 196);
+    color: rgb(0, 0, 0);
+  
+}
+
+@media (max-width:850px) {
+    .auth .auth-row p{
+        font-size: 0.7rem;
+    }
+
+    .auth .auth-container{
+        flex-direction: column;
+    }
+
+    .auth-left{
+        display: none;
+    }
+
+    .auth-container .auth-right{
+        width: 90%;
+        height: 100%;
+    }
+
+    .auth-container>.auth-right form{
+        width: 100%;
+    } 
+
+}
