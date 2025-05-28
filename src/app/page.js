@@ -1,8 +1,8 @@
 "use client"; // Only if you're using App Router
 
-import Navbar from "@/components/Navbar/Navbar";
+
 import { ToastContainer } from "react-toastify";
-import { storeContext } from "./authentication/AuthContext";
+
 import {
   Mic,
   Search,
@@ -18,6 +18,8 @@ import {
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import { storeContext } from "./(auth)/AuthContext";
+import Navbar from "../components/Navbar/Navbar";
 
 export default function Home() {
   const [inputFocused, setInputFocused] = useState(false);
@@ -27,7 +29,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!localStorage.getItem("auth")) {
-      router.push("/authentication");
+      router.push("/");
       setAuthorization(false);
     }
   }, [authorization, pathname]);
@@ -40,7 +42,7 @@ export default function Home() {
       <section className="w-full h-full flex flex-col items-center justify-center px-4 pt-8 backgroundContainer">
         <div className="backgroundImage"></div>
         <div className="content rounded-3xl px-10">
-          <h1 className="text-3xl md:text-4xl font-semibold mb-8 text-center text-white">
+          <h1 className="text-3xl md:text-3xl font-semibold mb-8 text-center text-white overflow-clip">
             How can I support you with your legal concerns?
           </h1>
 

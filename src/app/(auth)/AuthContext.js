@@ -1,21 +1,12 @@
-"use client"
+"use client";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 const storeContext = createContext();
 
-
 const ContextProvider = ({ children }) => {
-  
-  
-  const errMsg = (msg) => {
-    return toast.error(msg);
-  };
-  
-  const successMsg = (msg) => {
-    return toast.success(msg);
-  };
+  const router = useRouter();
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -23,70 +14,73 @@ const ContextProvider = ({ children }) => {
     password: "",
   });
 
-  const router = useRouter();
+  const [authorization, setAuthorization] = useState(false);
 
-  const [authorization,setAuthorization] =useState(false);
+  const errMsg = (msg) => toast.error(msg);
+  const successMsg = (msg) => toast.success(msg);
 
   const handleSignup = async () => {
     try {
-      const response = await fetch("http://localhost:8000/user/signup", {
+      const response = await fetch("api/auth/signup", {
         method: "POST",
         headers: {
-          "content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: credentials.username.toString(),
-          email: credentials.email.toString(),
-          password: credentials.password.toString(),
+          username: credentials.username,
+          email: credentials.email,
+          password: credentials.password,
         }),
       });
+
       const parsedResponse = await response.json();
       if (!parsedResponse.success) {
         return errMsg(parsedResponse.message);
       }
-      console.log(parsedResponse);
+
       localStorage.setItem("auth", parsedResponse.token);
       setAuthorization(true);
+      setCredentials({ username: "", email: "", password: "" });
+      successMsg(parsedResponse.message);
       router.push("/");
-      return successMsg(parsedResponse.message);
     } catch (err) {
-      return errMsg("Oops ! Some error Occurs");
+      errMsg("Oops! Some error occurred during signup.");
     }
   };
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:8000/user/login", {
+      const response = await fetch("api/auth/login", {
         method: "POST",
         headers: {
-          "content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: credentials.email.toString(),
-          password: credentials.password.toString(),
+          email: credentials.email,
+          password: credentials.password,
         }),
       });
+
       const parsedResponse = await response.json();
       if (!parsedResponse.success) {
         return errMsg(parsedResponse.message);
       }
+
       localStorage.setItem("auth", parsedResponse.token);
       setAuthorization(true);
+      setCredentials({ username: "", email: "", password: "" });
+      successMsg(parsedResponse.message);
       router.push("/");
-      return successMsg(parsedResponse.message);
-
     } catch (err) {
-      return errMsg("Oops ! some error Occurs");
+      errMsg("Oops! Some error occurred during login.");
     }
   };
 
-  useEffect(()=>{
-    if(localStorage.getItem("auth")){
-      setAuthorization(true)
-    }else {
-      router.push("/authentication")
+  useEffect(() => {
+    if (typeof window !== "undefined" && localStorage.getItem("auth")) {
+      setAuthorization(true);
     }
-  })
+  }, []);
 
   return (
     <storeContext.Provider
@@ -98,7 +92,7 @@ const ContextProvider = ({ children }) => {
         errMsg,
         successMsg,
         authorization,
-        setAuthorization
+        setAuthorization,
       }}
     >
       {children}

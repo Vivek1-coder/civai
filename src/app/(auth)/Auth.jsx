@@ -4,12 +4,16 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useContext, useState, useEffect } from "react";
 import "./Auth.css";
-import { storeContext } from "@/app/authentication/AuthContext";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { storeContext } from "./AuthContext";
 
 export default function Auth() {
   const router = useRouter();
+  const pathname = usePathname();
   const [page, setPage] = useState("Login");
+  const [loading, setLoading] = useState(false);
+
   const {
     credentials,
     setCredentials,
@@ -18,42 +22,35 @@ export default function Auth() {
     setAuthorization,
     authorization,
   } = useContext(storeContext);
-  const pathname = usePathname();
 
   const handleChange = (e) => {
-    setCredentials((pre) => {
-      return { ...pre, [e.target.name]: e.target.value };
-    });
+    setCredentials((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (page == "Login") {
-      handleLogin();
+    setLoading(true);
+    if (page === "Login") {
+      await handleLogin();
     } else {
-      handleSignup();
+      await handleSignup();
     }
-    setCredentials({
-      username: "",
-      email: "",
-      password: "",
-    });
+    setLoading(false);
   };
 
   const flipPage = () => {
-    if (page == "Login") {
-      setPage("Sign up");
-    } else {
-      setPage("Login");
-    }
+    setPage((prev) => (prev === "Login" ? "Sign up" : "Login"));
   };
 
   useEffect(() => {
-    if (localStorage.getItem("auth")) {
-      router.push("/");
+    if (typeof window !== "undefined" && localStorage.getItem("auth")) {
       setAuthorization(true);
+      router.push("/");
     }
-  }, [authorization, pathname]);
+  }, []);
 
   return (
     <div className="auth">
@@ -61,7 +58,8 @@ export default function Auth() {
         <div className="auth-left"></div>
         <div className="auth-right">
           <form onSubmit={handleSubmit}>
-            <h1>{page == "Login" ? "Login" : "Sign up"}</h1>
+            <h1>{page === "Login" ? "Login" : "Sign up"}</h1>
+
             {page !== "Login" && (
               <input
                 type="text"
@@ -71,6 +69,7 @@ export default function Auth() {
                 onChange={handleChange}
               />
             )}
+
             <input
               type="text"
               placeholder="Email Address *"
@@ -78,6 +77,7 @@ export default function Auth() {
               value={credentials.email}
               onChange={handleChange}
             />
+
             <input
               type="password"
               placeholder="Password *"
@@ -85,35 +85,38 @@ export default function Auth() {
               value={credentials.password}
               onChange={handleChange}
             />
+
+            <div className="auth-row"></div>
+
+            <button type="submit" disabled={loading}>
+              {loading
+                ? "Processing..."
+                : page === "Login"
+                ? "Login"
+                : "Sign up"}
+            </button>
+
             <div className="auth-row">
-              {/* <label>
-                <input type="checkbox" />
-                <p>Remember me*</p>
-              </label> */}
-            </div>
-            <button>{page == "Login" ? "Login" : "Sign up"}</button>
-            <div className="auth-row">
-              {" "}
-              {page === "Login" && (
+              {page === "Login" ? (
                 <p onClick={flipPage}>
-                  Don't have an account ? <span className="grey">Sign up</span>
+                  Don't have an account? <span className="grey">Sign up</span>
                 </p>
-              )}
-              {page !== "Login" && (
+              ) : (
                 <p onClick={flipPage}>
-                  Already have an account ? <span className="grey">Login</span>{" "}
+                  Already have an account? <span className="grey">Login</span>
                 </p>
               )}
             </div>
           </form>
         </div>
       </div>
+
       <ToastContainer
         position="top-right"
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick={false}
+        closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
