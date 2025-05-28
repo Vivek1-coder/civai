@@ -114,7 +114,7 @@ export default function Home() {
               {micAvailable && !listening && (
                 <IconButton
                   icon={
-                    <Mic size={16} onClick={SpeechRecognition.startListening} />
+                    <Mic size={16} onClick={()=>SpeechRecognition.startListening({continuous: true})} />
                   }
                 />
               )}
