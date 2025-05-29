@@ -41,7 +41,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!localStorage.getItem("auth")) {
-      router.push("/");
+      router.push("/u");
       setAuthorization(false);
     }
   }, [authorization, pathname]);

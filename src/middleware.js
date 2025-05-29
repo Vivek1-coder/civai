@@ -1,67 +1,45 @@
 import { NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
-import jwt from 'jsonwebtoken'; // You forgot to import this
-
-// Mock session validation (replace with your actual logic)
-async function isSessionValidForUser(sessionID, userId) {
-  // Dummy logic: sessionID must equal reversed userId
-  return sessionID && userId && sessionID === userId.split('').reverse().join('');
-}
+import { NextRequest } from 'next/server';
+import jwt from 'jsonwebtoken';
 
 export async function middleware(req) {
-  const url = req.nextUrl;
+const { pathname } = req.nextUrl;
+const protectedRoutes = ['/u', '/dashboard'];
+const authRoutes = ['/login', '/sign-up'];
 
-  // 1. Check token & session cookies manually for protected routes (/dashboard, /u)
-  if (url.pathname.startsWith('/dashboard') || url.pathname.startsWith('/u')) {
-    const token = req.cookies.get('authToken')?.value;
-    const sessionID = req.cookies.get('sessionID')?.value;
+if (protectedRoutes.some((route) => pathname.startsWith(route))) {
+const token = req.cookies.get('auth'); // No .value needed
+console.log("HIi");
+console.log("Cookies:", req.cookies);
+console.log("Token:", token);
 
-    if (!token || !sessionID) {
+    if (!token) {
       return NextResponse.redirect(new URL('/login', req.url));
     }
 
-    // Verify token manually (to check expiry & get userId)
     try {
-      const secret = process.env.JWT_SECRET;
-      const payload = jwt.verify(token, secret);
-      const userId = payload.userId;
+      // Verify token and check expiration
+      const payload = jwt.verify(token, process.env.JWT_SECRET);
+      
+      // Optional: Add DB check for valid sessions here
+      // Example: await validateSessionInDB(payload.userId, token);
 
-      if (!userId) {
-        return NextResponse.redirect(new URL('/login', req.url));
-      }
-
-      const validSession = await isSessionValidForUser(sessionID, userId);
-      if (!validSession) {
-        return NextResponse.redirect(new URL('/login', req.url));
-      }
-    } catch (error) {
-      console.log('Token verification failed:', error.message);
+      return NextResponse.next();
+    } catch (err) {
+      console.error('JWT verification failed:', err.message);
       return NextResponse.redirect(new URL('/login', req.url));
     }
   }
 
-  // 2. Use next-auth's getToken to check if user is authenticated for public routes
-  const token = await getToken({ req });
-  if (
-    token &&
-    (url.pathname.startsWith('/login') ||
-      url.pathname.startsWith('/sign-up') ||
-      url.pathname.startsWith('/verify') ||
-      url.pathname === '/')
-  ) {
-    // Authenticated user should not access auth pages, redirect to dashboard
+  // ─── Auth Routes: Redirect if Logged In ────────────────
+  const token = req.cookies.get('auth')?.value;
+  if (token && authRoutes.some((route) => pathname.startsWith(route))) {
     return NextResponse.redirect(new URL('/u', req.url));
   }
 
-  if (!token && (url.pathname.startsWith('/dashboard') || url.pathname.startsWith('/u'))) {
-    // Unauthenticated users trying to access protected routes redirect to home
-    return NextResponse.redirect(new URL('/', req.url));
-  }
-
-  // Allow the request to continue
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/u/:path*', '/login', '/sign-up', '/', '/verify/:path*'],
+  matcher: ['/', '/login', '/sign-up', '/u/:path*', '/dashboard/:path*'],
 };

@@ -21,8 +21,8 @@ import {
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { storeContext } from "../../(auth)/AuthContext";
-import Navbar from "../../../components/Navbar/Navbar";
+import { storeContext } from "../(auth)/AuthContext";
+import Navbar from "../../components/Navbar/Navbar";
 
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!localStorage.getItem("auth")) {
-      router.push("/");
+      router.push("/u");
       setAuthorization(false);
     }
   }, [authorization, pathname]);
