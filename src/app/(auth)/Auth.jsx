@@ -48,7 +48,7 @@ export default function Auth() {
   useEffect(() => {
     if (typeof window !== "undefined" && localStorage.getItem("auth")) {
       setAuthorization(true);
-      router.push("/");
+      router.push("/u");
     }
   }, []);
 

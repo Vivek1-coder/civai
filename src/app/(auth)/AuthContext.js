@@ -42,7 +42,7 @@ const ContextProvider = ({ children }) => {
       setAuthorization(true);
       setCredentials({ username: "", email: "", password: "" });
       successMsg(parsedResponse.message);
-      router.push("/");
+      router.push("/u");
     } catch (err) {
       errMsg("Oops! Some error occurred during signup.");
     }
@@ -70,7 +70,7 @@ const ContextProvider = ({ children }) => {
       setAuthorization(true);
       setCredentials({ username: "", email: "", password: "" });
       successMsg(parsedResponse.message);
-      router.push("/");
+      router.push("/u");
     } catch (err) {
       errMsg("Oops! Some error occurred during login.");
     }

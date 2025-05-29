@@ -31,7 +31,7 @@ export default function Login() {
   useEffect(() => {
     if (typeof window !== "undefined" && localStorage.getItem("auth")) {
       setAuthorization(true);
-      router.push("/");
+      router.push("/u");
     }
   }, []);
 
